@@ -22,4 +22,40 @@ class Order extends Model
     {
         return $this->hasManyThrough(Product::class, OrderItem::class);
     }
+
+    public static function generatePrintSheet($orders) {
+        $ordered = self::orderBySize();
+        $doesItFit = null;
+
+        foreach ($ordered as $key => $each) {
+            $doesItFit = self::checkFit($each);
+
+            if ($doesItFit) {
+                self::placeItem($each);
+                unset($ordered[$key]);
+            }
+        }
+
+        if (empty($ordered)) return true;
+
+        return false;
+    }
+
+    public static function orderbySize() {
+        $ordered = [];
+
+        return $ordered;
+    }
+
+    public static function checkFit() {
+        $checked = false;
+
+        return $checked;
+    }
+
+    public static function placeItem() {
+        $position = null;
+
+        return $position;
+    }
 }

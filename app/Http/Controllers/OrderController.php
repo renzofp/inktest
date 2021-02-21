@@ -14,7 +14,12 @@ class OrderController extends Controller
      */
     public function index()
     {
-        //
+        $orders = Order::all();
+        $process = Order::generatePrintSheet($orders);
+
+        if ($process) return 'Print sheet generated successfully';
+
+        return 'The items did not fit on a single spreadsheet';
     }
 
     /**
