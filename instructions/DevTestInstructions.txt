@@ -1,0 +1,57 @@
+Your task is to create an algorithm to take incoming orders and populate printing sheets.
+
+More info:
+- Sheets can be considered as a 10 unit by 15 unit grid
+- Products come in sizes [ 1x1, 2x2, 3x3, 4x4, 5x2, 2x5 ]
+- 1x1 -> means 1 grid unit by 1 grid unit
+
+Constraints:
+- Must use Laravel and Eloquent to develop algorithm
+- Write your own migrations and seeders. (SQL Dump example provided but not importable)
+- Orders must have all of their items on the same print sheet
+- Orders can have any number of items with any number of quantity
+- Must be able to track placement of products on the sheets
+
+Generate 50 sheets of test data
+- Bonus: Solutions that present the least amount of wasted space on sheets
+- Bonus: Test coverage of algorithm
+
+Example Data:
+
+- Product 1 - Size 1x1
+- Product 2 - Size 2x2
+- Product 3 - Size 3x3
+- Product 4 - Size 1x1
+- Product 5 - Size 4x4
+- Product 6 - Size 5x2
+- Product 7 - Size 2x5
+
+- Order 1
+	- Product 1 - Quantity 2
+	- Product 3 - Quantity 1
+	- Product 6 - Quantity 1
+	- Product 7 - Quantity 3
+
+
+id      order_id        product_id      quantity        ps_id
+1       1               1               2               1
+2       1               3               1               1
+3       1               6               1               1
+4       1               7               3               1
+
+PRINTSHEET
+o   o   x   x   x   o   o   o   o   o
+x   x   x   x   x   o   o   o   o   o
+x   x   x   x   x   x   x   x   x   x
+x   x   x   x   x   x   x   x   x   x
+o   o   x   o   o   x   o   o   x   x
+o   o   x   o   o   x   o   o   x   x
+o   o   x   o   o   x   o   o   x   x
+o   o   x   o   o   x   o   o   x   x
+o   o   x   o   o   x   o   o   x   x
+x   x   x   x   x   x   x   x   x   x
+x   x   x   x   x   x   x   x   x   x
+x   x   x   x   x   x   x   x   x   x
+x   x   x   x   x   x   x   o   o   o
+x   x   x   x   x   x   x   o   o   o
+x   x   x   x   x   x   x   o   o   o

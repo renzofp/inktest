@@ -1,0 +1,23 @@
+Hey Renzo,
+
+First off, I think they were pretty generous in providing the DB schema to you. This takes any of the guess work out of creating the migrations and related Eloquent models.
+
+First step would just be recreating that schema in Laravel. I would recommend using the artisan command that let's you create a model and it's migration (https://laravel.com/docs/8.x/eloquent#generating-model-classes) until you've done so for all the tables in that provided SQL file.
+
+Second step is connecting your models using Eloquent relationships. Ex: Order will have a "hasManyThrough" relationship with Product with the order_items table (OrderItem model) being the pivot table.
+
+So now that you have your tables and models, I think the next step would be putting some data into these tables. This is where you create some seeders. Just follow the documentation to create some products, orders, order items. I wouldn't worry too much about creating too many products. One of each size should be sufficient and you can just fill in the other columns with reasonable dummy values. Ex: The challenge doesn't call for you to worry about inventory management, so just make the inventory_quantity some large number like 1000, so that you don't even have to think about it (It also doesn't hurt to leave a comment in code stating logic/shortcut). Only other thing I'll say about the seeder is make sure you run the seeders in the right order based on your foreign key constraints. In this case, this would mean ensuring products and orders are seeded before order_items.
+
+That's actually the majority of the system and it didn't even require any critical thought. Just following the Laravel documentation.
+
+Now the actual challenge starts which would be generating a PrintSheet from an Order and then saving it to the DB using Eloquent. I'm not going to pretend to know the right algorithm for this off the top of my head, but there is no way you wouldn't be able to find help online with some research. Having to fit pieces of certain sizes into a grid efficiently sounds like a coder problem that would have many suggestions/solutions available with some Googling. I'll leave that to you. In terms of where to put this solution, I would probably have a function on my Order model class called something like "generatePrintSheet" that does the job and returns the resulting PrintSheet model with it's PrintSheetItem's already loaded via the Eloquent relationship. Once it works, think about pulling out the subtasks into their own clearly named function to improve overall readability.
+
+The other advantage of abstracting different bits of functionality like that is that they make them testable. For testing, just follow the Laravel documentation, so that in the end, you've tested all these functions you've written related to generating a PrintSheet (be sure to set the type column to "test") from an Order. At minimum cover expected cases, but it would be a good idea to handle edge cases as well. Only other advice related to writing tests is that they shouldn't assume any knowledge of existing data in the system. Meaning the tests should generate their own orders and products instead of relying on the ones you seeded before.
+
+Anyways, those are the broad strokes. No need to feel overwhelmed. Again, the majority of this exercise is basically demonstrating that you can follow the Laravel documentation.
+
+I think it would be good to get the grunt work out of the way tonight by getting to and completing the seeding step, so that you can just focus on the print sheet generation and testing problem tomorrow and send this baby off to the interviewers tomorrow night.
+
+We can do a quick screen share meeting when you're about done tomorrow where I can give some quick feedback, if necessary.
+
+Good luck!
