@@ -15,8 +15,8 @@ class CreatePrintSheetsTable extends Migration
     {
         Schema::create('print_sheets', function (Blueprint $table) {
             $table->id();
-            $table->enum('type', ['ecom', 'test'])->default('ecom')->collation('utf8_unicode_ci');
-            $table->string('sheet_url')->collation('utf8_unicode_ci');
+            $table->enum('type', ['ecom', 'test'])->default('ecom');
+            $table->string('sheet_url');
             $table->timestamps();
         });
     }

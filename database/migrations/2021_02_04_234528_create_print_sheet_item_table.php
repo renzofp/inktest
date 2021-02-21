@@ -15,20 +15,24 @@ class CreatePrintSheetItemTable extends Migration
     {
         Schema::create('print_sheet_item', function (Blueprint $table) {
             $table->id();
-            $table->enum('status', ['pass', 'reject', 'complete'])->default('pass')->collation('utf8_unicode_ci');
-            $table->string('image_url')->collation('utf8_unicode_ci');
-            $table->string('size')->collation('utf8_unicode_ci');
+            $table->enum('status', ['pass', 'reject', 'complete'])->default('pass');
+            $table->string('image_url');
+            $table->string('size');
             $table->integer('x_pos');
             $table->integer('y_pos');
             $table->integer('width');
             $table->integer('height');
-            $table->string('identifier')->collation('utf8_unicode_ci');
+            $table->string('identifier');
             $table->timestamps();
+        });
 
-            $table->integer('ps_id')->unsigned();
-            $table->foreign('ps_id')->references('id')->on('print_sheet');
-            $table->integer('order_item_id')->unsigned();
-            $table->foreign('order_item_id')->references('id')->on('order_item');
+        Schema::table('print_sheet_item', function (Blueprint $table) {
+            // $table->unsignedBigInteger('ps_id');
+            // $table->unsignedBigInteger('order_item_id');
+            // $table->foreign('ps_id')->references('id')->on('print_sheet');
+            // $table->foreign('order_item_id')->references('id')->on('order_item');
+            $table->foreignId('ps_id')->constrained('print_sheets');
+            $table->foreignId('order_item_id')->constrained('order_item');
         });
     }
 

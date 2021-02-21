@@ -12,4 +12,9 @@ class Product extends Model
     protected $fillable = [
         'title', 'vendor', 'type', 'size', 'price', 'handle', 'inventory_quantity', 'sku', 'design_url', 'published_state'
     ];
+
+    public function items()
+    {
+        return $this->belongsToMany(OrderItem::class);
+    }
 }

@@ -19,11 +19,11 @@ class CreateOrderItemTable extends Migration
             $table->bigInteger('refund')->nullable()->default(0);
             $table->integer('resend_amount')->default(0);
             $table->timestamps();
+        });
 
-            $table->bigInteger('order_id')->unsigned();
-            $table->foreign('order_id')->references('id')->on('orders');
-            $table->bigInteger('product_id')->unsigned();
-            $table->foreign('product_id')->references('id')->on('products');
+        Schema::table('order_item', function (Blueprint $table) {
+            $table->foreignId('order_id')->constrained();
+            $table->foreignId('product_id')->constrained();
         });
     }
 
