@@ -32,7 +32,7 @@ class CreatePrintSheetItemTable extends Migration
             // $table->foreign('ps_id')->references('id')->on('print_sheet');
             // $table->foreign('order_item_id')->references('id')->on('order_item');
             $table->foreignId('ps_id')->constrained('print_sheets');
-            $table->foreignId('order_item_id')->constrained('order_item');
+            $table->foreignId('order_product_id')->constrained('order_product');
         });
     }
 

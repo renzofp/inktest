@@ -20,6 +20,6 @@ class PrintSheetItem extends Model
 
     public function items()
     {
-        return $this->hasMany(Orderitem::class);
+        return $this->hasMany(OrderItem::class);
     }
 }

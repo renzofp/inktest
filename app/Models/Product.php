@@ -13,8 +13,8 @@ class Product extends Model
         'title', 'vendor', 'type', 'size', 'price', 'handle', 'inventory_quantity', 'sku', 'design_url', 'published_state'
     ];
 
-    public function items()
+    public function orders()
     {
-        return $this->belongsToMany(OrderItem::class);
+        return $this->belongsToMany(Order::class);
     }
 }

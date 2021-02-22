@@ -10,21 +10,16 @@ class Order extends Model
     use HasFactory;
 
     protected $fillable = [
-        'order_numer', 'customer_id', 'total_price', 'fulfillment_status', 'fulfilled_date', 'order_status', 'customer_order_count'
+        'order_number', 'customer_id', 'total_price', 'fulfillment_status', 'fulfilled_date', 'order_status', 'customer_order_count'
     ];
-
-    public function items()
-    {
-        return $this->belongsToMany(OrderItem::class);
-    }
 
     public function products()
     {
-        return $this->hasManyThrough(Product::class, OrderItem::class);
+        return $this->belongsToMany(Product::class);
     }
 
     public static function generatePrintSheet($orders) {
-        $ordered = self::orderBySize();
+        $ordered = self::orderBySize($orders);
         $doesItFit = null;
 
         foreach ($ordered as $key => $each) {
@@ -41,8 +36,10 @@ class Order extends Model
         return false;
     }
 
-    public static function orderbySize() {
+    public static function orderbySize($orders) {
         $ordered = [];
+
+
 
         return $ordered;
     }

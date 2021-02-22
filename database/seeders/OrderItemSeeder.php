@@ -23,7 +23,7 @@ class OrderItemSeeder extends Seeder
             $orderItems[] = [
                 'order_id' => $order_ids[rand(1, count($order_ids) - 1)],
                 'product_id' => $product_ids[rand(1, count($product_ids) - 1)],
-                'quantity' => rand(1,99)
+                'quantity' => rand(1,10)
             ];
         }
 

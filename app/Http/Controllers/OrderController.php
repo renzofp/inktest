@@ -14,7 +14,9 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $orders = Order::all();
+        $orders = Order::with('products')->get();
+        $orders2 = Order::all();
+        dd($orders, $orders2);
         $process = Order::generatePrintSheet($orders);
 
         if ($process) return 'Print sheet generated successfully';
