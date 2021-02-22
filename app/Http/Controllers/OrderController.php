@@ -14,14 +14,23 @@ class OrderController extends Controller
      */
     public function index()
     {
+        // grab all orders and eager load products
         $orders = Order::with('products')->get();
-        $orders2 = Order::all();
-        dd($orders, $orders2);
-        $process = Order::generatePrintSheet($orders);
 
-        if ($process) return 'Print sheet generated successfully';
+        // setup an empty array varaible to house the result of trying to place each item in the order to a PrintSheet
+        $success = [];
 
-        return 'The items did not fit on a single spreadsheet';
+        // loop all orders to be able to handle one at a time
+        foreach ($orders as $order) {
+            // add the result (true/false) into the success array
+            $success[] = Order::generatePrintSheet($order);
+        }
+
+        // if none of the placements failed, means at least one of the items didn't fit into a printsheet, return error message
+        if (in_array(false, $success)) return 'Some of the orders were too large for a single printsheet';
+
+        // all orders had their items were successfully placed on printsheets
+        return 'All print sheets were generated successfully';
     }
 
     /**

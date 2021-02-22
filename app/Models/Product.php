@@ -13,6 +13,7 @@ class Product extends Model
         'title', 'vendor', 'type', 'size', 'price', 'handle', 'inventory_quantity', 'sku', 'design_url', 'published_state'
     ];
 
+    // many to many relationship with orders
     public function orders()
     {
         return $this->belongsToMany(Order::class);

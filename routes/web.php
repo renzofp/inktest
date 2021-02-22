@@ -14,4 +14,5 @@ use App\Http\Controllers\OrderController;
 |
 */
 
+// simple routing for the homepage to generate the printsheets from the orders
 Route::get('/', [OrderController::class, 'index']);

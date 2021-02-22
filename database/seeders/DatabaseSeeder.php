@@ -13,7 +13,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        // seeders to call on artisan db:seed in order
         $this->call(ProductSeeder::class);
         $this->call(OrderSeeder::class);
         $this->call(OrderItemSeeder::class);

@@ -13,6 +13,7 @@ class PrintSheet extends Model
         'type', 'sheet_url'
     ];
 
+    // hasmany relation with PrintSheetItem
     public function sheetItems()
     {
         return $this->hasMany(PrintSheetitem::class);

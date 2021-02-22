@@ -15,6 +15,7 @@ class OrderItem extends Model
         'quantity', 'refund', 'resend_amount', 'order_id', 'product_id'
     ];
 
+    // inverse hasMany relation with PrintSheetItem
     public function sheet_item()
     {
         return $this->belongsTo(PrintSheetItem::class);
